@@ -51,14 +51,19 @@ BOOL CImageMFCView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CImageMFCView 그리기
 
-void CImageMFCView::OnDraw(CDC* /*pDC*/)
+void CImageMFCView::OnDraw(CDC* pDC)
 {
 	CImageMFCDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
 
-	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+	CPen pen, * oldpen;
+	pen.CreatePen(PS_SOLID, 1, RGB(0, 0, 0));
+	oldpen = pDC->SelectObject(&pen);
+	pDC->Rectangle(10, 10, 500, 500);
+	pDC->SelectObject(oldpen);
+	pen.DeleteObject();
 }
 
 
